@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="App.MainWindow"
+        Title="App"
+		 xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
+		x:CompileBindings="False"
+		>
+	
+	<Grid RowDefinitions="Auto, *">
+		<StackPanel Orientation="Vertical">
+			<TextBox x:Name="EpsilonBox" Watermark="Введите ε"/>
+			<TextBox x:Name="BetaBox" Watermark="Введите β"/>
+			<TextBox x:Name="AlphaBox" Watermark="Введите α"/>
+			<TextBox x:Name="DeltaBox" Watermark="Введите δ"/>
+			<TextBox x:Name="X0Box" Watermark="Введите x0 (жертвы)"/>
+			<TextBox x:Name="Y0Box" Watermark="Введите y0 (хищники)"/>
+			<Button Click="CalculateButton" Content="Рассчитать"/>
+		</StackPanel>
+		<lvc:CartesianChart Series="{Binding ChartSeries}" Grid.Row="1"/>
+	</Grid>
+</Window>
