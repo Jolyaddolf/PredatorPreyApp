@@ -6,14 +6,18 @@ using Avalonia.Markup.Xaml;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Avalonia;
+using LiveChartsCore.Defaults;
+using LiveChartsCore.SkiaSharpView.Painting; 
+using SkiaSharp; 
 
 namespace App
 {
-
     public partial class MainWindow : Window
     {
-        
         public ObservableCollection<ISeries> ChartSeries { get; set; }
+        public ObservableCollection<ISeries> PhaseSeries { get; set; }
+
+       
 
         public MainWindow()
         {
@@ -25,16 +29,13 @@ namespace App
             DeltaBox = this.FindControl<TextBox>("DeltaBox");
             X0Box = this.FindControl<TextBox>("X0Box");
             Y0Box = this.FindControl<TextBox>("Y0Box");
-         
-
-            // Устанавливаем привязку для графика
-            ChartSeries = new ObservableCollection<ISeries>();
-            DataContext = this;
 
             
-          
+            ChartSeries = new ObservableCollection<ISeries>();
+            PhaseSeries = new ObservableCollection<ISeries>();
+
+            DataContext = this;
         }
-        
 
         private void CalculateButton(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
@@ -63,10 +64,26 @@ namespace App
                     y = newY;
                 }
 
-                // Обновляем данные графика
+                //Обновление 
                 ChartSeries.Clear();
                 ChartSeries.Add(new LineSeries<double> { Values = prey, Name = "Жертвы" });
                 ChartSeries.Add(new LineSeries<double> { Values = predator, Name = "Хищники" });
+
+                //данные для фазового портрета 
+                List<ObservablePoint> phasePoints = new List<ObservablePoint>();
+                for (int i = 0; i < generations; i++)
+                {
+                    phasePoints.Add(new ObservablePoint { X = prey[i], Y = predator[i] });
+                }
+                PhaseSeries.Clear();
+                PhaseSeries.Add(new LineSeries<ObservablePoint>
+                {
+                    Values = phasePoints,
+                    Name = "Фазовый портрет",
+                    GeometrySize = 5,
+                    Stroke = new SolidColorPaint(SKColors.Blue), 
+                    Fill = null
+                });
             }
             catch (Exception ex)
             {
@@ -75,5 +92,3 @@ namespace App
         }
     }
 }
-
-

@@ -69,3 +69,4 @@ C:\Users\Bratyakin\source\repos\App\App\bin\Debug\net8.0\LiveChartsCore.dll
 C:\Users\Bratyakin\source\repos\App\App\bin\Debug\net8.0\LiveChartsCore.SkiaSharpView.dll
 C:\Users\Bratyakin\source\repos\App\App\bin\Debug\net8.0\LiveChartsCore.SkiaSharpView.Avalonia.dll
 C:\Users\Bratyakin\source\repos\App\App\bin\Debug\net8.0\SkiaSharp.HarfBuzz.dll
+C:\Users\Bratyakin\source\repos\App\App\obj\Debug\net8.0\App.sourcelink.json
